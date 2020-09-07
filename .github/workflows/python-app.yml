@@ -16,9 +16,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: s-weigand/setup-conda@v1
-    - run: conda --version
-    - uses: actions/checkout@v2
+    - name: Conda install
+      uses: s-weigand/setup-conda@v1
+    - name: Test conda    
+      run: conda --version
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
