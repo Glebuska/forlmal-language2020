@@ -16,14 +16,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Conda install
-      uses: s-weigand/setup-conda@v1
-    - name: Run conda    
-      run: conda activate
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
+    - uses: s-weigand/setup-conda@v1
+    - run: conda --version
+    - run: which python
     - name: Install graphBlast
       run: conda install -c conda-forge pygraphblas
     - name: Install dependencies
