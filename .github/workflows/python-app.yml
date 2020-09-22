@@ -6,6 +6,8 @@ name: Pytest
 on:
   pull_request:
     branches: [ master ]
+  push:
+    branches: [ develop ]
 
 jobs:
   build:
