@@ -25,13 +25,13 @@ def main():
     parser.add_argument(
         '--out'
         , required=False
-        , help='from indexes'
+        , help='path to file with output vertices'
     )
 
     parser.add_argument(
         '--to'
         , required=False
-        , help='to indexes'
+        , help='path to file with input vertices'
     )
 
     args = parser.parse_args()
