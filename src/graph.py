@@ -12,6 +12,18 @@ class Graph:
         self.start_states = list()
         self.final_states = list()
 
+    def copy(self):
+        copy = Graph()
+
+        copy.size = self.size
+        copy.start_states = self.start_states
+        copy.final_states = self.final_states
+
+        for label, matrix in self.matrices.items():
+            copy.matrices[label] = matrix.dup()
+
+        return copy
+
     def get_intersection(self, r):
         result = Graph()
 

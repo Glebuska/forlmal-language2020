@@ -28,7 +28,7 @@ def hellings(grammar: CFG, graph: Graph):
         if len(prod.body) == 1:
             term_prods.add(prod)
         else:
-            nonterm .add(prod)
+            nonterm.add(prod)
 
     for label, matrix in graph.matrices.items():
         for prod in cfg.productions:
