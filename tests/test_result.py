@@ -3,6 +3,7 @@ import argparse
 from src.graph import Graph
 from src.hellings import hellings
 from src.cyk import cyk
+from src.cfpq import cfpq_tensor_product, cfpq_matrix_product
 
 
 def test_graph_0():
@@ -77,6 +78,38 @@ def test_cyk_2():
 def test_hellings_1():
     grammar = Graph.build_grammar("tests/data/hellings_grammar.txt")
     graph = Graph()
+    graph.build_graph("tests/data/hellings_graph.txt")
+
+    assert Graph.get_closure(graph) == hellings(grammar, graph)
+
+
+def test_cfpq_mul_1():
+    grammar = Graph.build_grammar("tests/data/hellings_grammar.txt")
+    graph = Graph()
+    graph.build_graph("tests/data/hellings_graph.txt")
+
+    assert Graph.get_closure(graph) == cfpq_matrix_product(graph, grammar) == hellings(grammar, graph)
+
+
+def test_cfpq_mul_2():
+    grammar = Graph.build_grammar("tests/data/cyk_grammar1.txt")
+    graph = Graph()
     graph.build_graph("tests/data/graph0.txt")
 
-    assert graph.get_closure(graph) == hellings(grammar, graph)
+    assert Graph.get_closure(graph) == cfpq_matrix_product(graph, grammar)
+
+
+def test_cfpq_tensor_mul1():
+    grammar = Graph.build_grammar("tests/data/cyk_grammar1.txt")
+    graph = Graph()
+    graph.build_graph("tests/data/graph0.txt")
+
+    assert Graph.get_closure(graph) == cfpq_tensor_product(graph, grammar)
+
+
+def test_cfpq_tensor_mul2():
+    grammar = Graph.build_grammar("tests/data/hellings_grammar.txt")
+    graph = Graph()
+    graph.build_graph("tests/data/hellings_graph.txt")
+
+    assert Graph.get_closure(graph) == cfpq_tensor_product(graph, grammar)

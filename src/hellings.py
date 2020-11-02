@@ -10,6 +10,8 @@ def hellings(grammar: CFG, graph: Graph):
         return False
     result = {}
     deq = deque()
+    term_prods = set()
+    nonterm = set()
 
     if grammar.generate_epsilon():
         matrix = Matrix.sparse(BOOL, graph.size, graph.size)
@@ -21,6 +23,12 @@ def hellings(grammar: CFG, graph: Graph):
         result[grammar.start_symbol] = matrix
 
     cfg = grammar.to_normal_form()
+
+    for prod in cfg.productions:
+        if len(prod.body) == 1:
+            term_prods.add(prod)
+        else:
+            nonterm.add(prod)
 
     for label, matrix in graph.matrices.items():
         for prod in cfg.productions:
@@ -37,7 +45,7 @@ def hellings(grammar: CFG, graph: Graph):
 
         for key, matrix in result.items():
             for i, _ in matrix[:, out]:
-                for prod in cfg.productions:
+                for prod in nonterm:
                     if (len(prod.body) == 2 and prod.body[0] == key
                             and prod.body[1] == var
                             and (prod.head
@@ -48,7 +56,7 @@ def hellings(grammar: CFG, graph: Graph):
 
         for key, matrix in result.items():
             for new_to, _ in matrix[to, :]:
-                for prod in cfg.productions:
+                for prod in nonterm:
                     if (len(prod.body) == 2 and prod.body[0] == var
                             and prod.body[1] == key
                             and (prod.head
@@ -65,3 +73,4 @@ def hellings(grammar: CFG, graph: Graph):
 
     return result.get(cfg.start_symbol, Matrix.sparse(
         BOOL, graph.size, graph.size))
+
