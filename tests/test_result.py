@@ -120,42 +120,41 @@ path = "tests/language.txt"
 
 
 def test_language():
-    script = "select count edges from db".replace(" ", "")
+    script = "select count edges from db"
 
-    script = "select count edges from graph".replace(" ", "")
     assert query_script(script, path)
 
 
 def test_language1():
-    script1 = "select edges from g1 intersect g2".replace(" ", "")
+    script1 = "select edges from g1 intersect g2"
     assert query_script(script1, path)
 
 
 def test_language2():
-    script2 = "select edges from query * db_1".replace(" ", "")
+    script2 = "select edges from query * db_1"
     assert query_script(script2, path)
 
 
 def test_language3():
-    script3 = "select edges from query * db1".replace(" ", "")
+    script3 = "select edges from query * db1"
     assert query_script(script3, path)
 
 
 def test_language4():
-    script4 = "connect to db1".replace(" ", "")
+    script4 = "connect to db1"
     assert query_script(script4, path)
 
 
 def test_language5():
-    script5 = "select edges from query * | query + db | query db1".replace(" ", "")
+    script5 = "select edges from query * | query + db | query db1"
     assert query_script(script5, path)
 
 
 def test_language6():
-    script6 = "edges from query * | query + db | query db1".replace(" ", "")
+    script6 = "edges from query * | query + db | query db1"
     assert not query_script(script6, path)
 
 
 def test_language7():
-    script7 = "select edges from * | query + db | query db1".replace(" ", "")
+    script7 = "select edges from * | query + db | query db1"
     assert not query_script(script7, path)
