@@ -4,7 +4,7 @@ from src.graph import Graph
 from src.hellings import hellings
 from src.cyk import cyk
 from src.cfpq import cfpq_tensor_product, cfpq_matrix_product
-from src.query_language import run_script
+from src.query_language_script import query_script
 
 
 def test_graph_0():
@@ -123,39 +123,39 @@ def test_language():
     script = "select count edges from db".replace(" ", "")
 
     script = "select count edges from graph".replace(" ", "")
-    assert run_script(script, path)
+    assert query_script(script, path)
 
 
 def test_language1():
     script1 = "select edges from g1 intersect g2".replace(" ", "")
-    assert run_script(script1, path)
+    assert query_script(script1, path)
 
 
 def test_language2():
     script2 = "select edges from query * db_1".replace(" ", "")
-    assert run_script(script2, path)
+    assert query_script(script2, path)
 
 
 def test_language3():
     script3 = "select edges from query * db1".replace(" ", "")
-    assert run_script(script3, path)
+    assert query_script(script3, path)
 
 
 def test_language4():
     script4 = "connect to db1".replace(" ", "")
-    assert run_script(script4, path)
+    assert query_script(script4, path)
 
 
 def test_language5():
     script5 = "select edges from query * | query + db | query db1".replace(" ", "")
-    assert run_script(script5, path)
+    assert query_script(script5, path)
 
 
 def test_language6():
     script6 = "edges from query * | query + db | query db1".replace(" ", "")
-    assert not run_script(script6, path)
+    assert not query_script(script6, path)
 
 
 def test_language7():
     script7 = "select edges from * | query + db | query db1".replace(" ", "")
-    assert not run_script(script7, path)
+    assert not query_script(script7, path)
