@@ -3,7 +3,6 @@ from pyformlang.cfg import Terminal
 
 from src.graph import Graph
 
-
 def cfpq_tensor_product(graph, grammar):
     result = graph.copy()
 
