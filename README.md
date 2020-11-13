@@ -53,8 +53,9 @@ intersect := i n t e r s e c t
 count := c o u n t
 query := q u e r y
 to := t o
-name := (NAME)* | (WORD | NUM)*
-WORD (WORD)*
+name := (name)* | (<word> | num)*
+word := ([a-z] | _)*
+num := [0-9]*
  
 ```
 ## Example <br>
