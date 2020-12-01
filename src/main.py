@@ -3,6 +3,9 @@ import time
 from pyformlang.regular_expression import Regex
 from pygraphblas import *
 
+from src.graph import Graph
+from src.query_language import run_script
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -32,7 +35,6 @@ def main():
     )
 
     args = parser.parse_args()
-    # Graph.get_answer(args)
 
 
 if __name__ == '__main__':

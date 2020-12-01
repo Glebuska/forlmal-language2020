@@ -23,3 +23,52 @@ git clone https://github.com/Glebuska/formal-language2020
 install all libraries
 python3 -m pytest 
 ```
+
+# QUERY Language Syntax: <br>
+
+## To run it:
+```
+python3 src/query_language.py --script<command> --language<path_to_language txt>
+
+```
+See help information: <br>
+``` python3 src/query_language.py -h ```
+
+## Syntax:
+```
+script := eps | list of stmt
+stmt := connect to <name> | select <exrp> from <graph>
+graph := query <pattern> | <graph> intetsect <graph> | <name>
+expr := edges | count edges
+pattern := list of pattern | <star> | <name> | <plus> | <alt> pattern pattern | option pattern
+star := *
+plus := +
+alt := |
+option := ?
+edges := e d g e s
+connect := c o n n e c t
+select := s e l e c t
+from := f r o m
+intersect := i n t e r s e c t
+count := c o u n t
+query := q u e r y
+to := t o
+name := (name)* | (<word> | num)*
+word := ([a-z] | _)*
+num := [0-9]*
+ 
+```
+## Example <br>
+```
+select edges from g1 intersect g2
+```
+```
+connect to db1
+```
+
+```
+select edges from query * | query + db | query db1
+```
+```
+select count edges from db
+```
