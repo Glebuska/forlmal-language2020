@@ -204,7 +204,7 @@ class Graph:
             for line in g.readlines():
                 rule = line.replace('\n', '').split(' ', 1)
                 var = Variable(rule[0])
-                if any(symb in rule[1] for symb in '?+*|'):
+                if any(symb in rule[1] for symb in '?+*|,.\'()'):
                     body = rule[1].replace('?', f'| eps')
                     productions |= Graph.prod_from_regex(var, body, state_counter)
                 else:
