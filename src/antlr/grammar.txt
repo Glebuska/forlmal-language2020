@@ -1,0 +1,3 @@
+connect to 'db1'
+
+select edges from start range from 1 to 3 final none for 'graph1'
